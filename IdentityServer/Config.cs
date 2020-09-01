@@ -10,22 +10,22 @@ namespace IdentityServer
     public static class Config
     {
         public static IEnumerable<IdentityResource> IdentityResources =>
-            new IdentityResource[]
-            {
-                new IdentityResources.OpenId()
-            };
-
+        new IdentityResource[]
+        {
+            new IdentityResources.OpenId()
+        };
+        //定义如下API
         public static IEnumerable<ApiScope> ApiScopes =>
-            new List<ApiScope>
+        new List<ApiScope>
         {
             new ApiScope("api1", "My API")
         };
-
+        //定义客户端账户client 密码secret 运行接口范围api1
         public static IEnumerable<Client> Clients =>
-            new List<Client>
-    {
-        new Client
+        new List<Client>
         {
+            new Client
+            {
             ClientId = "client",
 
             // no interactive user, use the clientid/secret for authentication
@@ -34,12 +34,12 @@ namespace IdentityServer
             // secret for authentication
             ClientSecrets =
             {
-                new Secret("secret".Sha256())
+            new Secret("secret".Sha256())
             },
 
             // scopes that client has access to
             AllowedScopes = { "api1" }
-        }
-    };
+            }
+        };
     }
 }
